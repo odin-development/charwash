@@ -1,0 +1,35 @@
+{
+  // Start from the standard rule set
+  "default": true,
+
+  // --- Formatting / Line Wrapping ---
+  "MD013": false, // Ignore line length – let Prettier handle wrapping
+  "MD033": false, // Allow inline HTML – Prettier preserves it, so no need to warn
+  "MD041": false, // Do not require the first line to be a heading
+
+  // --- Headings ---
+  "MD003": { "style": "atx" }, // Enforce # style headings (rather than underlines)
+  "MD004": { "style": "consistent" }, // Be consistent with list markers (-, *, +), no strict preference
+  "MD007": { "indent": 2, "start_indented": false }, // Use 2-space indentation for lists, aligned with Prettier
+  "MD014": false, // Don’t enforce commands shown with `$` prompt style
+  "MD022": false, // Do not require blank lines before/after headings
+  "MD024": { "siblings_only": true }, // Allow duplicate headings as long as they’re in different sections
+
+  // --- Lists ---
+  "MD029": false, // Disable strict ordered list numbering – Prettier renumbers automatically
+  "MD030": false, // Disable spacing enforcement for list markers – Prettier handles inconsistently
+  "MD031": false, // Don’t require blank lines before/after fenced code blocks
+  "MD032": false, // Do not enforce blank lines before/after lists
+
+  // --- Links / URLs ---
+  "MD034": false, // Bare URLs are fine – no enforcement
+  "MD040": false, // Don’t enforce specific fenced code block languages
+
+  // --- Code Blocks ---
+  "MD046": false, // Don’t enforce indented vs fenced code block style
+  "MD048": { "style": "backtick" }, // When fenced, prefer backticks (```), consistent with Prettier
+
+  // --- Emphasis / Strong ---
+  "MD049": { "style": "consistent" }, // Emphasis markers (* vs _) just need to be consistent
+  "MD050": { "style": "consistent" }  // Strong markers (** vs __) just need to be consistent
+}

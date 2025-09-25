@@ -1,0 +1,101 @@
+{
+  "name": "odindev/charwash",
+  "description": "CharWash cleans messy text before it hits your database. Fixes broken characters, strips unsafe HTML, and removes Word/Outlook copy-paste junk. A standalone PHP library for text sanitization.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "text",
+    "sanitize",
+    "sanitization",
+    "html",
+    "htmlpurifier",
+    "unicode",
+    "normalization",
+    "encoding",
+    "clean",
+    "filter",
+    "charwash"
+  ],
+  "homepage": "https://github.com/odin-development/charwash",
+  "support": {
+    "issues": "https://github.com/odin-development/charwash/issues",
+    "source": "https://github.com/odin-development/charwash"
+  },
+  "authors": [
+    {
+      "name": "Odin Development",
+      "email": "gary@odindev.com"
+    }
+  ],
+
+  "require": {
+    "php": ">=8.3",
+    "ext-intl": "*",
+    "ext-mbstring": "*",
+    "ext-iconv": "*",
+    "ezyang/htmlpurifier": "^4.16"
+  },
+
+  "require-dev": {
+    "pestphp/pest": "^4.0",
+    "pestphp/pest-plugin-arch": "^4.0",
+    "phpstan/phpstan": "^1.11",
+    "squizlabs/php_codesniffer": "^3.9"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "OdinDev\\CharWash\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+
+ "scripts": {
+  "validate-config": "composer validate --no-check-lock",
+  "install-dev": "composer install --no-interaction --prefer-dist --no-progress",
+
+  "test": "vendor/bin/pest",
+  "test:coverage": "vendor/bin/pest --coverage",
+  "test:unit": "vendor/bin/pest tests/Unit",
+  "test:feature": "vendor/bin/pest tests/Feature",
+  "test:parallel": "vendor/bin/pest --parallel",
+
+  "lint": "vendor/bin/phpcs --standard=phpcs.xml src",
+  "lint:fix": "vendor/bin/phpcbf --standard=phpcs.xml src",
+
+  "stan": "vendor/bin/phpstan analyse --no-progress",
+
+  "qa": [
+    "@validate-config",
+    "@lint",
+    "@stan",
+    "@test"
+  ]
+},
+  "scripts-descriptions": {
+    "validate-config": "Validate composer.json without checking the lock file.",
+    "install-dev": "Install dependencies with sensible CI/dev flags.",
+    "test": "Run Pest tests.",
+    "test:coverage": "Run Pest tests with coverage report.",
+    "test:unit": "Run Pest unit tests only.",
+    "test:feature": "Run Pest feature tests only.",
+    "test:parallel": "Run Pest tests in parallel for faster execution.",
+    "lint": "Run PHPCS (PSR-12 via phpcs.xml) on src/",
+    "lint:fix": "Run PHPCBF to auto-fix fixable coding standard issues.",
+    "stan": "Run PHPStan static analysis.",
+    "qa": "Run validate, lint, stan, and test in sequence."
+  },
+
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
