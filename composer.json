@@ -1,0 +1,91 @@
+{
+  "name": "odindev/charwash",
+  "description": "CharWash cleans messy text before it hits your database. Fixes broken characters, strips unsafe HTML, and removes Word/Outlook copy-paste junk. A standalone PHP library for text sanitization.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "text",
+    "sanitize",
+    "sanitization",
+    "html",
+    "htmlpurifier",
+    "unicode",
+    "normalization",
+    "encoding",
+    "clean",
+    "filter",
+    "charwash"
+  ],
+  "homepage": "https://github.com/odin-development/charwash",
+  "support": {
+    "issues": "https://github.com/odin-development/charwash/issues",
+    "source": "https://github.com/odin-development/charwash"
+  },
+  "authors": [
+    {
+      "name": "Odin Development",
+      "email": "gary@odindev.com"
+    }
+  ],
+
+  "require": {
+    "php": ">=8.1",
+    "ext-intl": "*",
+    "ext-mbstring": "*",
+    "ext-iconv": "*",
+    "ezyang/htmlpurifier": "^4.16"
+  },
+
+  "require-dev": {
+    "phpstan/phpstan": "^1.11",
+    "phpunit/phpunit": "^11.0",
+    "squizlabs/php_codesniffer": "^3.9"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "OdinDev\\CharWash\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OdinDev\\CharWash\\Tests\\": "tests/"
+    }
+  },
+
+ "scripts": {
+  "validate-config": "composer validate --no-check-lock",
+  "install-dev": "composer install --no-interaction --prefer-dist --no-progress",
+
+  "test": "vendor/bin/phpunit",
+  "test:coverage": "vendor/bin/phpunit --coverage-clover=coverage.xml",
+
+  "lint": "vendor/bin/phpcs --standard=phpcs.xml src",
+  "lint:fix": "vendor/bin/phpcbf --standard=phpcs.xml src",
+
+  "stan": "vendor/bin/phpstan analyse --no-progress",
+
+  "qa": [
+    "@validate-config",
+    "@lint",
+    "@stan",
+    "@test"
+  ]
+},
+  "scripts-descriptions": {
+    "validate-config": "Validate composer.json without checking the lock file.",
+    "install-dev": "Install dependencies with sensible CI/dev flags.",
+    "test": "Run PHPUnit tests.",
+    "test:coverage": "Run PHPUnit with Clover coverage output.",
+    "lint": "Run PHPCS (PSR-12 via phpcs.xml) on src/",
+    "lint:fix": "Run PHPCBF to auto-fix fixable coding standard issues.",
+    "stan": "Run PHPStan static analysis.",
+    "qa": "Run validate, lint, stan, and test in sequence."
+  },
+
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

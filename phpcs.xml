@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ruleset name="CharWash Standard">
+  <description>PSR-12 coding standard with a few common exclusions</description>
+
+  <rule ref="PSR12" />
+
+  <!-- Exclude vendor and tests -->
+  <exclude-pattern>vendor/*</exclude-pattern>
+  <exclude-pattern>tests/*</exclude-pattern>
+
+  <!-- Tweak line length (warnings only) -->
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="140"/>
+      <property name="absoluteLineLimit" value="0"/>
+      <property name="ignoreComments" value="true"/>
+    </properties>
+  </rule>
+
+  <!-- Nice terminal output -->
+  <arg name="colors"/>
+  <arg name="encoding" value="utf-8"/>
+  <arg name="extensions" value="php"/>
+</ruleset>
