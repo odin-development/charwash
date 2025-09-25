@@ -1,0 +1,17 @@
+# Composer
+/vendor/
+/composer.lock
+
+# Testing
+/coverage/
+/.phpunit.result.cache
+/.phpunit.cache/
+
+# Cache
+*.cache
+/cache/
+
+# Environment
+.env
+.env.local
+.env.*.local

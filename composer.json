@@ -1,0 +1,42 @@
+{
+    "name": "odindev/charwash",
+    "description": "A comprehensive text sanitization package providing robust Unicode normalization, HTML purification, and Office/email paste cleanup",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["text", "sanitization", "html", "purifier", "unicode", "normalization", "laravel", "magento", "charwash"],
+    "authors": [
+        {
+            "name": "Odin Development",
+            "email": "gary@odindev.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-iconv": "*",
+        "ezyang/htmlpurifier": "^4.16"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OdinDev\\CharWash\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OdinDev\\CharWash\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
