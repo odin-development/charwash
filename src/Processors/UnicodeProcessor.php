@@ -13,10 +13,10 @@ class UnicodeProcessor
 {
     /**
      * Invisible Unicode characters that should be removed
+     * Note: \x{00A0} (non-breaking space) removed from this list - it should be replaced, not removed
      */
     private const INVISIBLE_CHARS_REGEX =
     '/[' .
-    '\x{00A0}' .
     '\x{2000}-\x{200D}' .
     '\x{202F}' .
     '\x{2060}' .
@@ -54,6 +54,12 @@ class UnicodeProcessor
 
         // Remove BOM (Byte Order Mark)
         $text = $this->removeBOM($text);
+
+        // Replace non-breaking spaces with regular spaces
+        $text = $this->replaceNonBreakingSpaces($text);
+
+        // Replace line breaks with spaces
+        $text = $this->replaceLineBreaks($text);
 
         // Remove invisible Unicode characters
         $text = $this->removeInvisibleCharacters($text);
@@ -154,5 +160,38 @@ class UnicodeProcessor
     private function removeSoftHyphens(string $text): string
     {
         return preg_replace(self::SOFT_HYPHEN_REGEX, '', $text) ?? $text;
+    }
+
+    /**
+     * Replace non-breaking spaces with regular spaces
+     *
+     * @param string $text The text to process
+     * @return string Text with non-breaking spaces replaced
+     */
+    private function replaceNonBreakingSpaces(string $text): string
+    {
+        // Replace various forms of non-breaking space with regular space
+        $text = str_replace("\u{00A0}", ' ', $text); // Unicode non-breaking space
+        $text = str_replace("\xC2\xA0", ' ', $text); // UTF-8 encoded NBSP
+        $text = str_replace("\xA0", ' ', $text);     // Latin-1 NBSP
+        $text = str_replace(chr(160), ' ', $text);    // ASCII 160
+
+        return $text;
+    }
+
+    /**
+     * Replace line breaks with spaces
+     *
+     * @param string $text The text to process
+     * @return string Text with line breaks replaced by spaces
+     */
+    private function replaceLineBreaks(string $text): string
+    {
+        // Replace CRLF, LF, and CR with space
+        $text = str_replace("\r\n", ' ', $text); // Windows line breaks (CRLF)
+        $text = str_replace("\n", ' ', $text);   // Unix line breaks (LF)
+        $text = str_replace("\r", ' ', $text);   // Mac line breaks (CR)
+
+        return $text;
     }
 }

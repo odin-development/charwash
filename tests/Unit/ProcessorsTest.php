@@ -49,10 +49,10 @@ describe('UnicodeProcessor', function () {
         $result = $processor->process($text);
         expect($result)->toBe('HelloWorld');
 
-        // Tab and newline should be preserved (they're whitespace)
+        // Tab is preserved, newline is replaced with space
         $text = "Hello\tWorld\n";
         $result = $processor->process($text);
-        expect($result)->toBe("Hello\tWorld\n");
+        expect($result)->toBe("Hello\tWorld ");
     });
 });
 
