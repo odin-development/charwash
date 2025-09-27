@@ -152,7 +152,8 @@ Each processor can be called directly:
 ```php
 // HTML cleanup
 $clean = CharWash::sanitizeHtml($htmlContent);
-// - Purifies HTML
+// - Removes dangerous tags/attributes
+// - NO encoding of &, <, >, ", ' etc.
 // - Removes empty tags
 // - Adds rel="noopener noreferrer"
 // - Converts H1 to H2
@@ -224,7 +225,8 @@ CharWashConfig::loadFromArray([
 - Strip soft hyphens and control characters
 
 ### HtmlProcessor
-- Uses HTMLPurifier with HTML5 support
+- Uses HTMLPurifier for security (removes dangerous tags/attributes)
+- **No HTML entity encoding** - characters remain as literals
 - Removes empty tags
 - Adds security attributes (noopener, noreferrer)
 - Converts H1 to H2 for SEO sanity

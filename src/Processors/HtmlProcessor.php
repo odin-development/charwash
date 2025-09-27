@@ -41,8 +41,12 @@ class HtmlProcessor
         // Convert H1 to H2 for SEO discipline (before purification)
         $text = $this->convertH1ToH2($text);
 
-        // Purify HTML
+        // Use HTMLPurifier to clean the content
         $text = $this->purifier->purify($text);
+
+        // CRITICAL: Decode all HTML entities back to their original characters
+        // This prevents encoding of ampersands and other special characters
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
         // Remove empty tags
         $text = $this->removeEmptyTags($text);
@@ -183,6 +187,7 @@ class HtmlProcessor
 
         return $html;
     }
+
 
     /**
      * Ensure all external links have proper security attributes
