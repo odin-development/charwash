@@ -187,10 +187,11 @@ class UnicodeProcessor
      */
     private function replaceLineBreaks(string $text): string
     {
-        // Replace CRLF, LF, and CR with space
+        // Replace CRLF, LF, CR, and tabs with space
         $text = str_replace("\r\n", ' ', $text); // Windows line breaks (CRLF)
         $text = str_replace("\n", ' ', $text);   // Unix line breaks (LF)
         $text = str_replace("\r", ' ', $text);   // Mac line breaks (CR)
+        $text = str_replace("\t", ' ', $text);   // Tab characters
 
         return $text;
     }
