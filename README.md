@@ -160,6 +160,8 @@ $clean = CharWash::sanitizeHtml($htmlContent);
 // Unicode fixes
 $clean = CharWash::sanitizeUnicode($text);
 // - NFC normalization
+// - Replaces non-breaking spaces with regular spaces
+// - Replaces line breaks (CRLF, LF, CR) with spaces
 // - Removes BOM, ZWSP, ZWNJ, ZWJ
 // - Strips soft hyphens
 
@@ -216,6 +218,8 @@ CharWashConfig::loadFromArray([
 
 ### UnicodeProcessor
 - NFC normalization for consistent encoding
+- Replace non-breaking spaces (U+00A0) with regular spaces
+- Replace line breaks (CRLF, LF, CR) with spaces
 - Remove invisible characters (BOM, ZWSP, ZWNJ, ZWJ)
 - Strip soft hyphens and control characters
 

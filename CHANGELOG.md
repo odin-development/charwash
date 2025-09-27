@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-09-26
+
+### Fixed
+- Non-breaking spaces (U+00A0) are now replaced with regular spaces instead of being removed in UnicodeProcessor
+- Line breaks (CRLF, LF, CR) are now replaced with spaces for inline content sanitization
+- Fixed issue where `CharWash::sanitizeUnicode()` would remove non-breaking spaces entirely
+
+### Changed
+- Updated UnicodeProcessor to handle non-breaking spaces and line breaks correctly
+- Improved character handling for better inline text sanitization
+
+### Added
+- Comprehensive test suite for character handling verification (CharacterHandlingTest)
+- New methods in UnicodeProcessor: `replaceNonBreakingSpaces()` and `replaceLineBreaks()`
+
 ## [1.0.0] - 2025-09-25
 
 ### Added
@@ -31,5 +46,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configurable for Laravel and Magento platforms
 - Performance optimized for large content processing
 
-[Unreleased]: https://github.com/odindev/charwash/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/odindev/charwash/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/odindev/charwash/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/odindev/charwash/releases/tag/v1.0.0
