@@ -70,6 +70,12 @@ class UnicodeProcessor
         // Remove soft hyphens
         $text = $this->removeSoftHyphens($text);
 
+        // Normalize multiple spaces to single space
+        $text = $this->normalizeSpaces($text);
+
+        // Trim leading and trailing whitespace
+        $text = trim($text);
+
         return $text;
     }
 
@@ -194,5 +200,17 @@ class UnicodeProcessor
         $text = str_replace("\t", ' ', $text);   // Tab characters
 
         return $text;
+    }
+
+    /**
+     * Normalize multiple consecutive spaces to single space
+     *
+     * @param string $text The text to process
+     * @return string Text with normalized spaces
+     */
+    private function normalizeSpaces(string $text): string
+    {
+        // Replace multiple consecutive spaces with single space
+        return preg_replace('/\s+/', ' ', $text) ?? $text;
     }
 }

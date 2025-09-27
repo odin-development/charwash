@@ -30,11 +30,12 @@ class CharacterHandlingTest extends TestCase
     public function testMultipleNonBreakingSpaces(): void
     {
         $input = "Word1\u{00A0}\u{00A0}\u{00A0}Word2";
-        $expected = "Word1   Word2";
+        // Multiple spaces are now normalized to single space
+        $expected = "Word1 Word2";
 
         $result = CharWash::sanitize($input);
 
-        $this->assertEquals($expected, $result, 'Multiple non-breaking spaces should be replaced with regular spaces');
+        $this->assertEquals($expected, $result, 'Multiple non-breaking spaces should be replaced with single space');
     }
 
     /**

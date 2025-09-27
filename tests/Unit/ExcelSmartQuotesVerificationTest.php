@@ -35,8 +35,8 @@ describe('CharWash correctly processes Excel smart quotes', function () {
         expect(mb_strpos($p6_cleaned, '"'))->not->toBeFalse();
         expect(mb_strpos($q6_cleaned, '"'))->not->toBeFalse();
 
-        // Verify exact output
-        expect($p6_cleaned)->toBe('4" ');
+        // Verify exact output (trailing spaces are now trimmed)
+        expect($p6_cleaned)->toBe('4"');
         expect($q6_cleaned)->toBe('4"');
     });
 
